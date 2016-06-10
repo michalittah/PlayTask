@@ -1,0 +1,41 @@
+.D-box{
+  background: white;
+  color: black;
+  padding: 20px;
+  h4 {
+    margin: 10px;
+    display: inline-block;
+  }
+  .assignedproblem {
+    margin-top: 15px;
+
+    .problem-dot {
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      margin: 0px 20px;
+      &.overdue {
+        background: #B03D40;
+      }
+      &.remain {
+        background: #BEBA2B;
+      }
+    }
+    .problem-info {
+      flex: 1;
+    }
+    .problem-due {
+      text-transform: uppercase;
+      display: block;
+      font-weight: bold;
+      font-size: 11px;
+      margin-top: 8px;
+      &.overdue {
+        color: #B03D40;
+      }
+      &.remain {
+        color: #39988F;
+      }
+    }
+  }
+}
