@@ -5,13 +5,6 @@ angular.module('PlayTask', [
     'angular.filter'
 ])
 
-// .config(function myAppConfig($stateProvider, $urlRouterProvider) {
-//     $urlRouterProvider.otherwise('/');
-// })
-//
-// .run(function run() {
-// })
-
     .controller('AppCtrl', ["$scope", "$http", "$filter", function AppCtrl($scope, $http, $filter) {
 
         var url = 'https://pure-falls-1534.herokuapp.com/';
