@@ -3,35 +3,33 @@
  * stylesheets used throughout the application as this is the only stylesheet in
  * the Grunt configuration that is automatically processed.
  */
-
-
 /**
  * First, we include the Twitter Bootstrap LESS files. Only the ones used in the
  * project should be imported as the rest are just wasting space.
  */
-
 @import '../../vendor/bootstrap/less/bootstrap.less';
-
-
 /**
  * This is our main variables file. We must include it last so we can overwrite any variable
  * definitions in our imported stylesheets.
  */
-
 @import 'variables.less';
 
-body{
+body {
   background-color: whitesmoke;
 }
+
 hr {
   margin-top: 10px;
 }
-.container{
+
+.container {
   background: white;
 }
-.head-row{
+
+.head-row {
   background: @orange;
 }
+
 .progress {
   overflow: hidden;
   height: 10px;
@@ -44,6 +42,7 @@ hr {
     box-shadow: none;
   }
 }
+
 .view-all-btn {
   float: right;
   border: 1px solid white;
@@ -53,7 +52,7 @@ hr {
   cursor: pointer;
 }
 
-.blue-btn{
+.blue-btn {
   float: right;
   width: 135px;
   border-radius: 3px;
@@ -66,12 +65,12 @@ hr {
   box-shadow: 1px 1px 2px 1px #cccccc;
   font-size: 11px;
   cursor: pointer;
-  &:hover{
+  &:hover {
     opacity: 0.8;
   }
 }
 
-.flex{
+.flex {
   padding: 0;
   margin: 0;
   list-style: none;
@@ -83,6 +82,7 @@ hr {
   align-items: center;
   justify-content: center;
 }
+
 @import 'A.less';
 @import 'B.less';
 @import 'C.less';

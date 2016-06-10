@@ -1,133 +1,146 @@
 <!DOCTYPE html>
 <html ng-app="PlayTask" ng-controller="AppCtrl">
-  <head>
-    <title ng-bind="pageTitle"></title>
+<head>
+    <title>Play Task</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
-    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>"/>
+    <% }); %>
 
-  </head>
-  <body>
-  <div class="container">
-        <div class="head-row row">
-            <div class="A-box col-md-6">
-                <div class="wrapper">
-                    <div class="media flex" ng-if="profile">
-                        <div class="media-left">
-                            <a href="#">
-                                <img ng-if="profile.image" class="media-object" ng-src="{{profile.image}}" alt="{{profile.name}}">
-                            </a>
+</head>
+<body>
+<div class="container">
+    <div class="head-row row">
+        <div class="A-box col-md-6">
+            <div class="wrapper">
+                <div class="media flex" ng-if="profile">
+                    <div class="media-left">
+                        <a href="#">
+                            <img ng-if="profile.image" class="media-object" ng-src="{{profile.image}}"
+                                 alt="{{profile.name}}">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{profile.name}}</h4>
+                        <div class="level"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            {{profile.goals_complete}} Goals complete this weak | <span
+                                    class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                            {{profile.problems_owned}} Open problems owned
                         </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">{{profile.name}}</h4>
-                            <div class="level"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{profile.goals_complete}} Goals complete this weak | <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> {{profile.problems_owned}} Open problems owned</div>
-                            <small>Level 12</small>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                </div>
+                        <small>Level 12</small>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                                 aria-valuemax="100" style="width: 60%;">
                             </div>
                         </div>
-                    </div>
-                    <div class="badges">
-                        <span class="badges-total">badges ({{profile.total_badges}})</span>
-                        <span class="view-all-btn">view all</span>
-                    </div>
-                    <div class="badges-icons">
-                        <img class="badges-icon" src="assets/RedBadge.png">
-                        <img class="badges-icon" src="assets/OrangeBadge.png">
-                        <img class="badges-icon" src="assets/BlueBadge.png">
-                        <img class="badges-icon" src="assets/PinkBadge.png">
-                        <img class="badges-icon" src="assets/GreenBadge.png">
                     </div>
                 </div>
-            </div>
-
-            <div class="B-box col-md-6">
-                <div class="wrapper">
-                    <h4>Personal Skills</h4>
+                <div class="badges">
+                    <span class="badges-total">badges ({{profile.total_badges}})</span>
                     <span class="view-all-btn">view all</span>
+                </div>
+                <div class="badges-icons">
+                    <img class="badges-icon" src="assets/RedBadge.png">
+                    <img class="badges-icon" src="assets/OrangeBadge.png">
+                    <img class="badges-icon" src="assets/BlueBadge.png">
+                    <img class="badges-icon" src="assets/PinkBadge.png">
+                    <img class="badges-icon" src="assets/GreenBadge.png">
+                </div>
+            </div>
+        </div>
 
-                    <div ng-if="skills.skills"  ng-repeat="skill in skills.skills">
-                        <div class="skill flex">
-                            <div class="skill-info">
-                                <img class="skill-img" ng-src="assets/{{skillsIcons[$index]}}.png">
-                               <span class="skill-name">{{skill.name}}</span>
-                            </div>
-                            <div class="progress">
-                                 <div class="progress-bar" role="progressbar" aria-valuenow="{{skill.score*100}}" aria-valuemin="0" aria-valuemax="100" style="width: {{skill.score*100}}%;"></div>
-                            </div>
+        <div class="B-box col-md-6">
+            <div class="wrapper">
+                <h4>Personal Skills</h4>
+                <span class="view-all-btn">view all</span>
+
+                <div ng-if="skills.skills" ng-repeat="skill in skills.skills">
+                    <div class="skill flex">
+                        <div class="skill-info">
+                            <img class="skill-img" ng-src="assets/{{skillsIcons[$index]}}.png">
+                            <span class="skill-name">{{skill.name}}</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="{{skill.score*100}}"
+                                 aria-valuemin="0" aria-valuemax="100" style="width: {{skill.score*100}}%;"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-      <div class="row">
-          <div class="C-box col-md-6">
-              <h4>Activity</h4>
-              <span class="blue-btn">Add Activity</span>
-              <hr>
-              <div ng-if="activityfeed" ng-repeat="(key, value) in activityfeed | groupBy:'timestamp'">
-                  <div class="text-center">
-                      <div class="dot"></div>
-                      <span class="date">{{key}}</span>
-                      <div class="dot"></div>
-                  </div>
-                  <div class="activityfeed flex" ng-repeat="activity in value">
-                      <img ng-if="activity.image" class="activity-img" ng-src="{{activity.image}}">
-                      <span class="feed-copy">{{activity.copy}}</span>
-                      <span class="feed-xp"> {{activity.xp}} XP</span>
-                  </div>
-              </div>
-          </div>
-<span class="line"></span>
-          <div class="col-md-6">
-              <div class="D-box row">
-                  <h4>My Assigned Problems</h4>
-                  <hr>
-                  <div ng-if="assignedproblems"  ng-repeat="problem in assignedproblems.problems">
-                      <div class="assignedproblem flex">
-                          <span class="problem-dot" ng-class="{'overdue':problem.days_due < 0 , 'remain':problem.days_due >=0 }"></span>
-                          <div class="problem-info">
-                          <span class="problem-copy">{{problem.copy}}</span>
-                          <i class="problem-due" ng-class="{'overdue':problem.days_due < 0 , 'remain':problem.days_due >=0 }"> {{problem.days_due<0? problem.days_due*-1+" day overdue":problem.days_due +" days remain"}}</i>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="E-box row">
-                  <hr>
-                  <h4>Kudos</h4>
-                  <span class="blue-btn" ng-click="showEbox()">Give Kudos</span>
-                  <hr>
-                  <div ng-if="kudos && Ebox"  class="kudos-circles flex">
-                      <div>
-                          <h4>This Week</h4>
-                          <div class="week_score circle">{{kudos.week_score}}</div>
-                      </div>
-                      <span class="horizontal-line"></span>
-                      <div>
-                          <h4>All Time</h4>
-                          <div class="all-time circle">{{kudos.all_time}}</div>
-                      </div>
-                  </div>
-                  <div ng-if="kudos.kudos_feed && Ebox"  ng-repeat="kudo in kudos.kudos_feed">
-                      <div class="kudos flex">
-                          <img class="kudos-img" ng-src="assets/Face{{$index+1}}.png">
-                          <div class="kudos-info">
-                              <div class="kudos-name">{{kudo.name}}</div>
-                              <i class="kudos-copy">"{{kudo.copy}}"</i>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
     </div>
-  <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
-  <script type="text/javascript" src="<%= file %>"></script><% }); %>
+    <div class="row">
+        <div class="C-box col-md-6">
+            <h4>Activity</h4>
+            <span class="blue-btn">Add Activity</span>
+            <hr>
+            <div ng-if="activityfeed" ng-repeat="(key, value) in activityfeed | groupBy:'timestamp'">
+                <div class="text-center">
+                    <div class="dot"></div>
+                    <span class="date">{{key}}</span>
+                    <div class="dot"></div>
+                </div>
+                <div class="activityfeed flex" ng-repeat="activity in value">
+                    <img ng-if="activity.image" class="activity-img" ng-src="{{activity.image}}">
+                    <span class="feed-copy">{{activity.copy}}</span>
+                    <span class="feed-xp"> {{activity.xp}} XP</span>
+                </div>
+            </div>
+        </div>
+        <span class="line"></span>
+        <div class="col-md-6">
+            <div class="D-box row">
+                <h4>My Assigned Problems</h4>
+                <hr>
+                <div ng-if="assignedproblems" ng-repeat="problem in assignedproblems.problems">
+                    <div class="assignedproblem flex">
+                        <span class="problem-dot"
+                              ng-class="{'overdue':problem.days_due < 0 , 'remain':problem.days_due >=0 }"></span>
+                        <div class="problem-info">
+                            <span class="problem-copy">{{problem.copy}}</span>
+                            <i class="problem-due"
+                               ng-class="{'overdue':problem.days_due < 0 , 'remain':problem.days_due >=0 }">
+                                {{problem.days_due<0? problem.days_due*-1+" day overdue":problem.days_due +" days
+                                remain"}}</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  </body>
+            <div class="E-box row">
+                <hr>
+                <h4>Kudos</h4>
+                <span class="blue-btn" ng-click="showEbox()">Give Kudos</span>
+                <hr>
+                <div ng-if="kudos && Ebox" class="kudos-circles flex">
+                    <div>
+                        <h4>This Week</h4>
+                        <div class="week_score circle">{{kudos.week_score}}</div>
+                    </div>
+                    <span class="horizontal-line"></span>
+                    <div>
+                        <h4>All Time</h4>
+                        <div class="all-time circle">{{kudos.all_time}}</div>
+                    </div>
+                </div>
+                <div ng-if="kudos.kudos_feed && Ebox" ng-repeat="kudo in kudos.kudos_feed">
+                    <div class="kudos flex">
+                        <img class="kudos-img" ng-src="assets/Face{{$index+1}}.png">
+                        <div class="kudos-info">
+                            <div class="kudos-name">{{kudo.name}}</div>
+                            <i class="kudos-copy">"{{kudo.copy}}"</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+<script type="text/javascript" src="<%= file %>"></script>
+<% }); %>
+
+</body>
 </html>
